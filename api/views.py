@@ -22,14 +22,7 @@ def getRoutes(request):
 
 class Register(generics.CreateAPIView):
     permission_classes = (permissions.IsAuthenticated, IsR1User,)
-    def post(self,request):
-        self.serializer_class = AccountsSerializer(data=request.data)
-        if self.serializer_class.is_valid():
-            self.serializer_class.save()
-            return Response(status=status.HTTP_201_CREATED)
-        else:
-            print(self.serializer_class.errors)
-            return Response(status=status.HTTP_400_BAD_REQUEST) 
+    serializer_class   = AccountsSerializer
 
 class getUser(generics.ListAPIView):
     permission_classes = (permissions.IsAuthenticated, )
